@@ -15,7 +15,8 @@ var (
 	ColorFgLineNumber  = tcell.ColorGray
 	ColorBgLineNumber  = tcell.ColorNone
 	ColorBgStatusLine  = tcell.ColorNone
-	ColorFgStatusLine  = tcell.Color249
-	ColorBgCommandLine = tcell.Color233
-	ColorFgCommandLine = tcell.Color249
+	ColorFgStatusLine  = ColorFgText
+	ColorBgCommandLine = tcell.ColorNone
+	ColorFgCommandLine = ColorFgText
+
 )
