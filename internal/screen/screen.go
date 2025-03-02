@@ -4,7 +4,7 @@ import (
 	"log"
 
 	"github.com/gdamore/tcell/v2"
-	"github.com/jhenriquem/Gom/config"
+	"github.com/jhenriquem/Gom/internal/colors"
 )
 
 var Screen, err = tcell.NewScreen()
@@ -19,7 +19,7 @@ func ScreenInitializer() {
 	}
 
 	// Definer o estilo da tela
-	stScreen := tcell.StyleDefault.Background(config.ColorBg).Foreground(tcell.ColorReset)
+	stScreen := tcell.StyleDefault.Background(colors.ColorBg).Foreground(tcell.ColorReset)
 	Screen.SetStyle(stScreen)
 	Screen.Clear()
 	Screen.Show()

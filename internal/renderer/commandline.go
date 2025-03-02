@@ -2,7 +2,7 @@ package renderer
 
 import (
 	"github.com/gdamore/tcell/v2"
-	"github.com/jhenriquem/Gom/config"
+	"github.com/jhenriquem/Gom/internal/colors"
 	"github.com/jhenriquem/Gom/internal/editor"
 	"github.com/jhenriquem/Gom/internal/screen"
 )
@@ -14,7 +14,7 @@ func CommandLine() {
 
 	width, height := screen.Screen.Size()
 
-	bgStyle := tcell.StyleDefault.Background(config.ColorBgCommandLine).Foreground(config.ColorFgCommandLine)
+	bgStyle := tcell.StyleDefault.Background(colors.ColorBgCommandLine).Foreground(colors.ColorFgCommandLine)
 
 	for x := 0; x < width; x++ {
 		char := ' '

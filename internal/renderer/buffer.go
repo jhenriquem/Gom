@@ -5,6 +5,7 @@ import (
 
 	"github.com/gdamore/tcell/v2"
 	"github.com/jhenriquem/Gom/config"
+	"github.com/jhenriquem/Gom/internal/colors"
 	"github.com/jhenriquem/Gom/internal/editor"
 	"github.com/jhenriquem/Gom/internal/screen"
 )
@@ -22,8 +23,8 @@ func Buffer() {
 
 	screen.Screen.Clear()
 
-	stText := tcell.StyleDefault.Background(config.ColorBgText).Foreground(config.ColorFgText)
-	stLineNumber := tcell.StyleDefault.Background(config.ColorBgLineNumber).Foreground(config.ColorFgLineNumber)
+	stText := tcell.StyleDefault.Background(colors.ColorBgText).Foreground(colors.ColorFgText)
+	stLineNumber := tcell.StyleDefault.Background(colors.ColorBgLineNumber).Foreground(colors.ColorFgLineNumber)
 
 	visibleEnd := config.ScrollOffSet + screenHeight - 3
 

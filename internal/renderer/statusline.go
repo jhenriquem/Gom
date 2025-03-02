@@ -4,15 +4,14 @@ import (
 	"fmt"
 
 	"github.com/gdamore/tcell/v2"
-	"github.com/jhenriquem/Gom/config"
+	"github.com/jhenriquem/Gom/internal/colors"
 	"github.com/jhenriquem/Gom/internal/editor"
 	"github.com/jhenriquem/Gom/internal/screen"
 )
 
 func StatusLine() {
 	width, height := screen.Screen.Size()
-
-	bgStyle := tcell.StyleDefault.Background(config.ColorBgStatusLine).Foreground(config.ColorFgStatusLine)
+	bgStyle := tcell.StyleDefault.Background(colors.ColorBgStatusLine).Foreground(colors.ColorFgStatusLine)
 
 	nameFile := editor.GOM.CrrBuffer.NameFile
 
@@ -22,7 +21,7 @@ func StatusLine() {
 
 	section_a := fmt.Sprintf(" %s  %s  %d/%d", editor.GOM.CrrMode, nameFile, editor.GOM.CrrBuffer.CurrentLine+1, editor.GOM.CrrBuffer.CurrentColumn+1)
 
-	section_b := fmt.Sprintf("[ %d / %d ]", editor.GOM.CrrBffIndex+1, len(editor.GOM.Buffers))
+	section_b := fmt.Sprintf("[%d/%d]  ", editor.GOM.CrrBffIndex+1, len(editor.GOM.Buffers))
 
 	padding := width - len(section_a)
 
