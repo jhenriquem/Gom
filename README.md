@@ -1,4 +1,5 @@
 # Gom Editor 
+<img src="./assets/img.png"/>
 
 Um editor de texto minimalista baseado em terminal, escrito em Go. Inspirado no Neovim, ele fornece uma interface leve e eficiente para edição de texto diretamente do terminal.
 
@@ -18,6 +19,7 @@ gom-editor/
 ├── internal/          # Código-fonte principal do editor
 │   ├── buffer/        # Gerenciamento de buffers (arquivos abertos)
 │   ├── editor/        # Gerenciamento do editor (instância aberta)
+│   ├── colors/        # Gerenciamento de cores do editor
 │   ├── keymap/        # Processamento da entrada do usuário e ações de teclado
 │   ├── renderer/      # Gerenciamento de UI (janelas, status bar)
 │   ├── event/         # Eventos e ações
