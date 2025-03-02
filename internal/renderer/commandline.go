@@ -8,10 +8,6 @@ import (
 )
 
 func CommandLine() {
-	if editor.GOM.CrrMode != "COMMAND" {
-		return
-	}
-
 	width, height := screen.Screen.Size()
 
 	bgStyle := tcell.StyleDefault.Background(colors.ColorBgCommandLine).Foreground(colors.ColorFgCommandLine)
@@ -19,12 +15,16 @@ func CommandLine() {
 	for x := 0; x < width; x++ {
 		char := ' '
 
-		if x < len(editor.GOM.CrrCommand) {
-			char = editor.GOM.CrrCommand[x]
+		if x < len(editor.GOM.CommandLine.CrrCommand) {
+			char = editor.GOM.CommandLine.CrrCommand[x]
 		}
 		screen.Screen.SetContent(x, height-1, char, nil, bgStyle)
 	}
+
+	// Mostrar o cursor na CommandLine apenas no modo de comando
+	if editor.GOM.CrrMode == "COMMAND" {
+		screen.Screen.ShowCursor(editor.GOM.CommandLine.CrrColumn, height-1)
+	}
 	// Atualizar a tela
-	screen.Screen.ShowCursor(editor.GOM.CrrBuffer.CurrentColumn, height-1)
 	screen.Screen.Show()
 }

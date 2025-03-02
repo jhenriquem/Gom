@@ -6,35 +6,26 @@ import (
 
 	"github.com/gdamore/tcell/v2"
 	"github.com/jhenriquem/Gom/internal/editor"
-	"github.com/jhenriquem/Gom/internal/screen"
 	"github.com/jhenriquem/Gom/internal/utils"
 )
 
 func InsertInCommand(eventKey *tcell.EventKey) {
-	editor.GOM.CrrCommand = append(
-		editor.GOM.CrrCommand[:editor.GOM.CrrBuffer.CurrentColumn],
-		append([]rune{eventKey.Rune()}, editor.GOM.CrrCommand[editor.GOM.CrrBuffer.CurrentColumn:]...)...,
+	editor.GOM.CommandLine.CrrCommand = append(
+		editor.GOM.CommandLine.CrrCommand[:editor.GOM.CommandLine.CrrColumn],
+		append([]rune{eventKey.Rune()}, editor.GOM.CommandLine.CrrCommand[editor.GOM.CommandLine.CrrColumn:]...)...,
 	)
-	editor.GOM.CrrBuffer.CurrentColumn++
+	editor.GOM.CommandLine.CrrColumn++
 }
 
 func BackSpaceInCommand() {
-	if len(editor.GOM.CrrCommand) > 1 && editor.GOM.CrrBuffer.CurrentColumn > 1 {
-		editor.GOM.CrrBuffer.CurrentColumn--
-		editor.GOM.CrrCommand = append(editor.GOM.CrrCommand[:editor.GOM.CrrBuffer.CurrentColumn], editor.GOM.CrrCommand[editor.GOM.CrrBuffer.CurrentColumn+1:]...)
+	if len(editor.GOM.CommandLine.CrrCommand) > 1 && editor.GOM.CrrBuffer.CurrentColumn > 1 {
+		editor.GOM.CommandLine.CrrColumn--
+		editor.GOM.CommandLine.CrrCommand = append(editor.GOM.CommandLine.CrrCommand[:editor.GOM.CommandLine.CrrColumn], editor.GOM.CommandLine.CrrCommand[editor.GOM.CommandLine.CrrColumn+1:]...)
 	}
 }
 
-func EnterInCommand() {
-	editor.GOM.CrrMode = "NORMAL"
-	editor.GOM.CrrCommand = []rune{':'}
-	editor.GOM.CrrBuffer.CurrentLine = 0
-	screen.Screen.SetCursorStyle(tcell.CursorStyleBlinkingBlock)
-	editor.GOM.CrrBuffer.CurrentColumn = 0
-}
-
 func RunCommand() {
-	command := strings.Split(string(editor.GOM.CrrCommand), " ")
+	command := strings.Split(string(editor.GOM.CommandLine.CrrCommand), " ")
 
 	utils.MessageCommand(command[0])
 
@@ -76,6 +67,7 @@ func openFile(nameFile string) {
 			file, err = os.Create(nameFile)
 		}
 		editor.GOM.ScanFile(file)
+		return
 	}
 
 	// Imprimi a message de retorno do comando

@@ -14,13 +14,14 @@ func InputInCommandMode(eventKey *tcell.EventKey) {
 		}
 	case tcell.KeyEnter:
 		event.RunCommand()
-		event.EnterInCommand()
+		event.CommandToNormal()
 	case tcell.KeyEscape:
 		event.CommandToNormal()
+		editor.GOM.CommandLine.CrrCommand = []rune{}
 	case tcell.KeyLeft:
-		editor.GOM.CrrBuffer.MoveCursor(0, -1)
+		editor.GOM.CommandLine.MoveCursor(-1)
 	case tcell.KeyRight:
-		editor.GOM.CrrBuffer.MoveCursor(0, 1)
+		editor.GOM.CommandLine.MoveCursor(1)
 
 	case tcell.KeyBackspace, tcell.KeyBackspace2:
 		event.BackSpaceInCommand()
